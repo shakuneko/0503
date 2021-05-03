@@ -14,7 +14,7 @@ export default function Header() {
 
     const ViewProfileButton = ({name}) => {
         return <Button  style={{float:"right"}}  className="ham-menu-btn" onClick={()=>onSelect(name) }>
-            <img className="ham-menu-icon" src="https://img.onl/kTUjl9"></img>
+            <img alt="" className="ham-menu-icon" src="https://img.onl/kTUjl9"></img>
         </Button>
     }
 

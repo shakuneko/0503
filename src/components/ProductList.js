@@ -7,14 +7,14 @@ import {Row,Col}from "antd";
 export default function ProductList(){
     return(
       <div  className="product">
-          <img className="header-pic"src="https://img.onl/u7zjYS"/>
+          <img alt="" className="header-pic"src="https://img.onl/u7zjYS"/>
             
             <div className="big-container">
               <div  className="text-center">
                 <h4 >Hot Products</h4>
-                <a className="more">
+                <div className="more">
                   <p >More...</p>
-                </a>
+                </div>
                 <Row gutter={[32,32]}>
                   {products.map(product => (
                     <Col 

@@ -1,5 +1,5 @@
   
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Layout } from 'antd';
 import AppHeader from "../components/Header" 
 import ProductList from "../components/ProductList" 

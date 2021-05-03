@@ -2,7 +2,6 @@ import { useEffect,useContext } from "react";
 import Cookie from "js-cookie"
 import { Button, notification } from "antd"
 import { StoreContext } from "../store"
-import { ADD_CART_ITEM } from "../utils/constants"
 import { addCartItem } from "../action";
 import { ShoppingCartOutlined  } from '@ant-design/icons';
 

@@ -97,28 +97,28 @@ function ProductDetail() {
             <Row className="shop-container" gutter={[16, 32]}>
             
                 <Col lg={{span:1}} >
-                    <button type="button" className="related-btn"> <img className="related-arrow" src="https://raw.githubusercontent.com/shakuneko/icon/master/related-product-privious.png"/></button>
+                    <button type="button" className="related-btn"> <img alt="" className="related-arrow" src="https://raw.githubusercontent.com/shakuneko/icon/master/related-product-privious.png"/></button>
                 </Col>
                 <Col lg={{ span:17 }} sm={{ span:16 }} xs={{ span:16 }}>
                     <div className="related-products-images">
                         <Col  lg={{span:6}} sm={{span:12}} id="photo">
                             
-                            <img className="products-image" src={product.detailproduct1}/>
+                            <img alt="" className="products-image" src={product.detailproduct1}/>
                         </Col>
                         <Col  lg={{span:6}} sm={{span:12}} xs={{ span:0 }}>
-                            <img className="products-image" src={product.detailproduct2}/>
+                            <img alt="" className="products-image" src={product.detailproduct2}/>
                         </Col>
                         <Col  lg={{span:6}} sm={{span:0}} xs={{ span:0 }}>
-                            <img className="products-image" src={product.detailproduct3}/>
+                            <img alt="" className="products-image" src={product.detailproduct3}/>
                         </Col>
                         <Col  lg={{span:6}} sm={{span:0}} xs={{ span:0 }}>
-                            <img className="products-image" src={product.detailproduct4}/>
+                            <img alt="" className="products-image" src={product.detailproduct4}/>
                         </Col>
                     </div> 
                 </Col>
                 <Col  lg={{span:1}} >
                     <div className="btn2">
-                        <button type="button" className="related-btn "> <img className="related-arrow" src="https://raw.githubusercontent.com/shakuneko/icon/master/related-product-next.png"/></button>
+                        <button type="button" className="related-btn "> <img alt="" className="related-arrow" src="https://raw.githubusercontent.com/shakuneko/icon/master/related-product-next.png"/></button>
                     </div>
                 </Col>
             </Row>

@@ -25,34 +25,34 @@ export default function Footer(){
                         </div>
                         <div className=" footer-container  footer-down-right">
                             <div className="icons ">
-                                <img className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/instergram.png"/>
-                                <img className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/fb.png"/>
-                                <img className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/twitter.png"/> 
-                                <img className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/pinterest.png"/> 
+                                <img alt="" className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/instergram.png"/>
+                                <img alt="" className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/fb.png"/>
+                                <img alt="" className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/twitter.png"/> 
+                                <img alt="" className="footer-icon" src="https://raw.githubusercontent.com/shakuneko/icon/master/pinterest.png"/> 
                             </div> 
                             <div className=" icons ">
                                 <div className="footer-options">
                                     <ul className="footer-about">
                                         <li style={{marginBottom:"0.5rem"}}><a className="options-title">ABOUT</a></li>
-                                        <li><a className="options"/></li>
-                                        <li><a className="options">About Us</a></li>
-                                        <li><a className="options">Newsletter</a></li>
-                                        <li><a className="options">Wholesale Program</a></li>
-                                        <li><a className="options">Trade Program</a></li>
+                                        <li className="options"></li>
+                                        <li className="options">About Us</li>
+                                        <li className="options">Newsletter</li>
+                                        <li className="options">Wholesale Program</li>
+                                        <li className="options">Trade Program</li>
                                     </ul>
                                     <ul className="footer-help">
                                         <li style={{marginBottom:"0.5rem"}}><a className="options-title">HELP</a></li>
-                                        <li><a className="options">Track My Order</a></li>
-                                        <li><a className="options">Return My Order</a></li>
-                                        <li><a className="options">Contact Us</a></li>
+                                        <li className="options">Track My Order</li>
+                                        <li className="options">Return My Order</li>
+                                        <li className="options">Contact Us</li>
                                     </ul>
                                     <ul className="footer-shop">
                                         <li style={{marginBottom:"0.5rem"}}><a className="options-title">SHOP</a></li>
-                                        <li><a className="options">Clock</a></li>
-                                        <li><a className="options">Chair</a></li>
-                                        <li><a className="options">Table</a></li>
-                                        <li><a className="options">Light</a></li>
-                                        <li><a className="options">Book Shelf</a></li>
+                                        <li className="options">Clock</li>
+                                        <li className="options">Chair</li>
+                                        <li className="options">Table</li>
+                                        <li className="options">Light</li>
+                                        <li className="options">Book Shelf</li>
                                     </ul>
                                 </div> 
                             </div>
