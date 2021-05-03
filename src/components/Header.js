@@ -5,10 +5,10 @@ import { useState } from "react";
 import { Button } from "antd";
 
 export default function Header() {
-    const [activeNavItem, activeNavItemSet] = useState('');
+    const [activeNavItem] = useState('');
     const [visible, setStatetVisible] = useState(false);
     const onSelect = name => (
-        activeNavItemSet(name),
+        // activeNavItemSet(name),
         setStatetVisible(true)
     )
 

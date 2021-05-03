@@ -1,5 +1,5 @@
 import { Button, Select } from "antd";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../store"
 import Cookie from "js-cookie"
@@ -10,7 +10,7 @@ const { Option } = Select;
 export default function CartModal({ isModalVisible, toggleModal,product }) {
    const { state: { cartItems }, dispatch } = useContext(StoreContext);
    const handleCancel = () => toggleModal(!isModalVisible);
-   const [color, setColor] = useState();
+   // const [color, setColor] = useState();
    const getTotalPrice = () => {
       return (cartItems.length > 0) ?
          cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
@@ -70,7 +70,7 @@ export default function CartModal({ isModalVisible, toggleModal,product }) {
                                     defaultValue={item.color} 
                                     placeholder="Select color"
                                     className="select-style cart-top-right-container"
-                                    onChange={val=>setColor(val)}
+                                    // onChange={val=>setColor(val)}
                                     size="large"
                                  >
                                  {[...Array(item.color.length).keys()].map((x) => (

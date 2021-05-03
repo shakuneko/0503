@@ -33,7 +33,7 @@ export default function Footer(){
                             <div className=" icons ">
                                 <div className="footer-options">
                                     <ul className="footer-about">
-                                        <li style={{marginBottom:"0.5rem"}}><a className="options-title">ABOUT</a></li>
+                                        <li style={{marginBottom:"0.5rem"}} className="options-title">ABOUT</li>
                                         <li className="options"></li>
                                         <li className="options">About Us</li>
                                         <li className="options">Newsletter</li>
@@ -41,13 +41,13 @@ export default function Footer(){
                                         <li className="options">Trade Program</li>
                                     </ul>
                                     <ul className="footer-help">
-                                        <li style={{marginBottom:"0.5rem"}}><a className="options-title">HELP</a></li>
+                                        <li style={{marginBottom:"0.5rem"}} className="options-title">HELP</li>
                                         <li className="options">Track My Order</li>
                                         <li className="options">Return My Order</li>
                                         <li className="options">Contact Us</li>
                                     </ul>
                                     <ul className="footer-shop">
-                                        <li style={{marginBottom:"0.5rem"}}><a className="options-title">SHOP</a></li>
+                                        <li style={{marginBottom:"0.5rem"}}className="options-title">SHOP</li>
                                         <li className="options">Clock</li>
                                         <li className="options">Chair</li>
                                         <li className="options">Table</li>

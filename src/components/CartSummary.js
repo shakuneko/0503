@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Badge } from "antd";
 import { CartIcon } from "./Icon";
 
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function CartSummary() {
 
   const { state: { cartItems } } = useContext(StoreContext);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [isModalVisible, setIsModalVisible] = useState(false);
   // const toggleModal = () => setIsModalVisible(!isModalVisible);
 
   const count = (cartItems.length > 0) ?
