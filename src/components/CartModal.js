@@ -8,7 +8,7 @@ import { FrownOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
 export default function CartModal({ isModalVisible, toggleModal,product }) {
-   const { state: { cartItems }, dispatch } = useContext(StoreContext);
+   const { state: { cartItems,color }, dispatch } = useContext(StoreContext);
    const handleCancel = () => toggleModal(!isModalVisible);
    // const [color, setColor] = useState();
    const getTotalPrice = () => {
@@ -49,7 +49,7 @@ export default function CartModal({ isModalVisible, toggleModal,product }) {
                      
                      <Link to={`/product/${item.id}`} className="cart-image">
                         <div  onClick={()=>{
-                           setProductDetail(dispatch, item.id, item.qty,);
+                           setProductDetail(dispatch, item.id, item.qty,item.color);
                            handleCancel();
                         }}>
                            <img src={item.image} alt={item.name} />
@@ -65,11 +65,13 @@ export default function CartModal({ isModalVisible, toggleModal,product }) {
                         <div className="option-container">
                            <div className="shopping-content">
                               <div className="shopping-content-color">
-                                 {"   "}
+                              
                                  <Select 
-                                    defaultValue={item.color} 
+                                    defaultValue={color} 
+                                    value={item.color}
                                     placeholder="Select color"
                                     className="select-style cart-top-right-container"
+                                    onChange={(color) => addCartItem(dispatch, item, color)}
                                     // onChange={val=>setColor(val)}
                                     size="large"
                                  >

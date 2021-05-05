@@ -10,10 +10,10 @@ const { Option } = Select;
 
 
 function ProductDetail() {
-    const { state: { productDetail: { product, qty} }, dispatch } = useContext(StoreContext);
+    const { state: { productDetail: { product, qty,color} }, dispatch } = useContext(StoreContext);
     // const { dispatch } = useContext(StoreContext);
     // const [qty, setQty] = useState(product.countInStock > 0 ? 1 : 0);
-    const [color, setColor] = useState();
+    // const [color, setColor] = useState();
 
    return (
        
@@ -44,7 +44,8 @@ function ProductDetail() {
                             defaultValue={color} 
                             placeholder="Select color"
                             className="select-style shop-top-right-container"
-                            onChange={val=>setColor(val)}
+                            onChange={val => setProductDetail(dispatch, product.id, val)}
+                            // onChange={val=>setColor(val)}
                             size="large"
                         >
                             {[...Array(product.color.length).keys()].map((x) => (
@@ -72,7 +73,7 @@ function ProductDetail() {
                           
                         </p>
                     </div>
-                    <AddToCart product={product} qty={qty} />
+                    <AddToCart product={product} qty={qty} color={color}/>
                 </div>
             </Col>
         </Row>
