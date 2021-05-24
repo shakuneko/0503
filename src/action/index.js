@@ -8,17 +8,17 @@ import {
 
 import products from "../json/products.json";
 
-export const addCartItem = (dispatch, product, qty,color) => {
+export const addCartItem = (dispatch, product, qty,col,colNum) => {
   const item = {
     id: product.id,
     name: product.name,
     image: product.image,
     price: product.price,
     author:product.author,
-    color:product.color,
     countInStock: product.countInStock,
     qty,
-    color,
+    col,
+    colNum
   };
   dispatch({
     type: ADD_CART_ITEM,
@@ -34,26 +34,22 @@ export const removeCartItem = (dispatch, productId) => {
 };
 
 
-export const setProductDetail = (dispatch, productId, qty,color) => {
+export const setProductDetail = (dispatch, productId, qty,col,colNum) => {
   const product = products.find(
     x => x.id === productId
   );
   
-  if(qty === 0 )
-  dispatch({
-    type: SET_PRODUCT_DETAIL,
-    payload: {
-      product,
-      color,
-    }
-  })
-  else
+  if(qty === 0 && product.countInStock >0)
+      qty = 1;
+      if(col==="")col="None";
+
   dispatch({
     type: SET_PRODUCT_DETAIL,
     payload: {
       product,
       qty,
-      color,
+      col,
+      colNum
     }
   })
 }

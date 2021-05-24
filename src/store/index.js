@@ -28,9 +28,11 @@ const initialState = {
       productDetail: {
       product: {
          image:[],
-         type:[]
+         color:[]
       },
       qty: 1,
+      col:'None',
+      colNum:0
   },
  };
  
