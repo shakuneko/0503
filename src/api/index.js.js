@@ -96,3 +96,14 @@ export const getOrderById = async (orderId) => {
   const doc = await allOrdersCollectionRef.doc(orderId).get();
   return doc.data()
 }
+
+export const updateUserInfoApi = async (email, password, displayName) => {
+  const user = auth.currentUser;
+  if(displayName)
+    await user.updateProfile({ displayName });
+  if(email)
+    await user.updateEmail(String(email));
+  if(password)
+    await user.updatePassword(password);
+  return user;
+}

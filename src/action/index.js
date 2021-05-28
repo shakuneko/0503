@@ -25,6 +25,10 @@ import {
   BEGIN_ORDER_DETAIL,
   SUCCESS_ORDER_DETAIL,
   FAIL_ORDER_DETAIL,
+
+  BEGIN_UPDATE_USERINFO,
+  SUCCESS_UPDATE_USERINFO,
+  FAIL_UPDATE_USERINFO,
 } from "../utils/constants";
 
 import products from "../json/products.json";
@@ -213,3 +217,24 @@ export const requestOrderDetail = async (dispatch, orderId) => {
     });
   }
 }
+
+export const updateUserInfo = async (dispatch, userInfo) => {
+  dispatch({ type: BEGIN_UPDATE_USERINFO });
+  try {
+    const user = await updateUserInfoApi(
+      userInfo.email,
+      userInfo.password,
+      userInfo.name
+    );
+    dispatch({
+      type: SUCCESS_UPDATE_USERINFO,
+      payload: user.providerData[0],
+    });
+  } catch (e) {
+    dispatch({
+      type: FAIL_UPDATE_USERINFO,
+      payload: e.message,
+    });
+    console.log(e);
+  }
+};

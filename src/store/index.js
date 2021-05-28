@@ -28,6 +28,10 @@ import {
    BEGIN_ORDER_DETAIL,
    SUCCESS_ORDER_DETAIL,
    FAIL_ORDER_DETAIL,
+
+   BEGIN_UPDATE_USERINFO,
+   SUCCESS_UPDATE_USERINFO,
+   FAIL_UPDATE_USERINFO,
  } from "../utils/constants"
  
 
@@ -226,6 +230,28 @@ const initialState = {
                    loading: false,
                    error: action.payload,
                  },
+               };
+
+            case BEGIN_UPDATE_USERINFO:
+               return { ...state, userSignin: { ...state.userSignin, loading: true } };
+            case SUCCESS_UPDATE_USERINFO:
+               return {
+               ...state,
+               userSignin: {
+                  ...state.userSignin,
+                  loading: false,
+                  userInfo: action.payload,
+                  error: "",
+               },
+               };
+            case FAIL_UPDATE_USERINFO:
+               return {
+               ...state,
+               userSignin: {
+                  ...state.userSignin,
+                  loading: false,
+                  error: action.payload,
+               },
                };
 
             default:
