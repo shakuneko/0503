@@ -2,11 +2,11 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-import products from "../json/products.json";
-import inspirations from "../json/inspirations.json";
-import shop from "../json/shop.json";
-import designers from "../json/designers.json";
-import aboutus from "../json/about-us";
+// import products from "../json/products.json";
+// import inspirations from "../json/inspirations.json";
+// import shop from "../json/shop.json";
+// import designers from "../json/designers.json";
+// import aboutus from "../json/about-us.json";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -23,22 +23,24 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
 
-export const getJSON = (url) => {
-  switch (url) {
-    case "/":
-      return products;
-    case "/inspirations":
-      return inspirations;
-    case "/shop":
-      return shop;
-    case "/designers":
-      return designers;
-    case "/about-us":
-      return aboutus;
-    default:
-      return products;
-  }
-};
+// export const getJSON = (url) => {
+//   switch (url) {
+//     case "/":
+//       return products;
+//     case "/inspirations":
+//       return inspirations;
+//     case "/shop":
+//       return shop;
+//     case "/designers":
+//       return designers;
+//     case "/about-us":
+//       return aboutus;
+//     default:
+//       return products;
+//   }
+// };
+
+const auth = firebase.auth();
 
 export const postChatContent = (senderName, message) => {
   // REFERENCE CHATROOM DOCUMENT
@@ -71,12 +73,7 @@ export const registerWithEmailPassword = async (email, password, displayName) =>
   return user;
 }
 
-export const registerWithEmailPassword = async (email, password, displayName) => {
-  await auth.createUserWithEmailAndPassword(email, password);
-  const user = auth.currentUser;
-  await user.updateProfile({ displayName })
-  return user;
-}
+
 
 export const createOrderApi = async (order) => {
   const user = auth.currentUser.uid;
@@ -106,4 +103,24 @@ export const updateUserInfoApi = async (email, password, displayName) => {
   if(password)
     await user.updatePassword(password);
   return user;
+}
+export const checkLoginApi = () => {
+  const user = auth.currentUser;
+  return user.uid?  true : false;
+}
+
+export const getOrderByUser = async () => {
+  const user = auth.currentUser.uid;
+  let jsonOrders = [];
+
+  // QUERY Orders
+  const querySnapshot = await allOrdersCollectionRef.where("user", "==", user).get();
+  querySnapshot.forEach((doc) => {
+    jsonOrders.push(doc.data());
+  });
+  return jsonOrders;
+}
+
+export const signOut = () => {
+  auth.signOut();
 }

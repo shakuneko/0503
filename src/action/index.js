@@ -29,6 +29,12 @@ import {
   BEGIN_UPDATE_USERINFO,
   SUCCESS_UPDATE_USERINFO,
   FAIL_UPDATE_USERINFO,
+
+  EMPTY_CART,
+
+  SEARCH_USER_ORDERS,
+  SUCCESS_SEARCH,
+  FAIL_SEARCH,
 } from "../utils/constants";
 
 import products from "../json/products.json";
@@ -40,7 +46,11 @@ import {
   registerWithEmailPassword,
   createOrderApi,
   getOrderById,
-} from "../api";
+  updateUserInfoApi,
+  getOrderByUser,
+  signOut
+
+} from "../api/index";
 
 export const addCartItem = (dispatch, product, qty,col,colNum) => {
   const item = {
@@ -238,3 +248,23 @@ export const updateUserInfo = async (dispatch, userInfo) => {
     console.log(e);
   }
 };
+
+export const getUserOrders = async (dispatch) => {
+  dispatch({ type: SEARCH_USER_ORDERS });
+  try {
+    const orders = await getOrderByUser();
+    dispatch({ 
+      type: SUCCESS_SEARCH,
+      payload: orders
+    });
+  }catch (error) {
+    dispatch({ 
+      type: FAIL_SEARCH, 
+      payload: error 
+    });
+  }
+}
+export const logoutFromFirebase = async (dispatch) => {
+  signOut();
+  dispatch({ type: LOGOUT_REQUEST });
+}

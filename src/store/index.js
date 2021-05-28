@@ -32,6 +32,12 @@ import {
    BEGIN_UPDATE_USERINFO,
    SUCCESS_UPDATE_USERINFO,
    FAIL_UPDATE_USERINFO,
+
+   SAVE_PAYMENT_METHOD,
+
+   SEARCH_USER_ORDERS,
+   SUCCESS_SEARCH,
+   FAIL_SEARCH,
  } from "../utils/constants"
  
 
@@ -253,6 +259,30 @@ const initialState = {
                   error: action.payload,
                },
                };
+               case SEARCH_USER_ORDERS:
+                  return {
+                  ...state,
+                  userOrders: { ...state.userOrders, loading: true },
+                  };
+               case SUCCESS_SEARCH:
+                  return {
+                  ...state,
+                  userOrders: { 
+                     ...state.userOrders,
+                     loading: false,
+                     orders: action.payload,
+                     error: "",
+                  },
+                  };
+               case FAIL_SEARCH: 
+                  return {
+                  ...state,
+                  userOrders: { 
+                     ...state.userOrders,
+                     loading: false,
+                     error: action.payload,
+                  },
+                  };
 
             default:
             return state;

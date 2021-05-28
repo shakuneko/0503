@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Row, Col, Spin } from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
 import GooglePayButton from '@google-pay/button-react';
-import { requestOrderDetail } from "../actions"
+import { requestOrderDetail } from "../action"
 import { StoreContext } from "../store";
 
 export default function OrderCard({ orderId }) {
