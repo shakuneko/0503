@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Form, Input, Button, Select, Card } from "antd";
+import { Form, Input, Button, Select} from "antd";
 import { logoutFromFirebase, updateUserInfo, getUserOrders } from "../action";
 import { StoreContext } from "../store";
 import { Option } from "antd/lib/mentions";

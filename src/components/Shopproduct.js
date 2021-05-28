@@ -2,7 +2,7 @@ import ShopProductItem from "./ShopProductItem";
 import products from "../json/products.json";
 import {Row,Col,Layout}from "antd";
 import ShopNavBar from "../components/ShopNavBar";
-import { Scrollbars } from 'react-custom-scrollbars';
+// import { Scrollbars } from 'react-custom-scrollbars';
 
 const { Sider } = Layout;
 export default function Shopproduct(){
