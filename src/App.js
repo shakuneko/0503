@@ -8,6 +8,9 @@ import Shopping from "./page/Shopping";
 import Shop from "./page/Shop";
 import Login from './page/Login'
 import Register from './page/Register'
+import Profile from './page/Profile'
+import Shipping from './page/Shipping'
+import Payment from './page/Payment'
 
 
 import { StoreProvider } from "./store";
@@ -24,6 +27,9 @@ function App() {
           <Route path="/Shop" component={Shop} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/shipping" component={Shipping} />
+          <Route path="/payment" component={Payment} />
+          <Route path="/profile" component={Profile} />
   
         </Switch>
       </BrowserRouter>

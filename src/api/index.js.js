@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
+const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
 
 export const getJSON = (url) => {
   switch (url) {
@@ -69,4 +69,30 @@ export const registerWithEmailPassword = async (email, password, displayName) =>
   const user = auth.currentUser;
   await user.updateProfile({ displayName })
   return user;
+}
+
+export const registerWithEmailPassword = async (email, password, displayName) => {
+  await auth.createUserWithEmailAndPassword(email, password);
+  const user = auth.currentUser;
+  await user.updateProfile({ displayName })
+  return user;
+}
+
+export const createOrderApi = async (order) => {
+  const user = auth.currentUser.uid;
+  const orderRef = await allOrdersCollectionRef.doc();
+  const id = orderRef.id;
+  // Store Data for Aggregation Queries
+  await orderRef.set({
+    ...order,
+    id,
+    user
+  });
+  return { ...order, id };
+
+}
+
+export const getOrderById = async (orderId) => {
+  const doc = await allOrdersCollectionRef.doc(orderId).get();
+  return doc.data()
 }

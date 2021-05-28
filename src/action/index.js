@@ -10,6 +10,21 @@ import {
   FAIL_LOGIN_REQUEST,
   LOGOUT_REQUEST,
   REMEMBER_LOGIN,
+
+  BEGIN_REGISTER_REQUEST,
+  SUCCESS_REGISTER_REQUEST,
+  FAIL_REGISTER_REQUEST,
+
+  SAVE_SHIPPING_ADDRESS,
+  SAVE_PAYMENT_METHOD,
+
+  BEGIN_ORDER_CREATE,
+  SUCCESS_ORDER_CREATE,
+  FAIL_ORDER_CREATE,
+
+  BEGIN_ORDER_DETAIL,
+  SUCCESS_ORDER_DETAIL,
+  FAIL_ORDER_DETAIL,
 } from "../utils/constants";
 
 import products from "../json/products.json";
@@ -18,6 +33,9 @@ import products from "../json/products.json";
 import {
   signInWithEmailPassword,
   checkLoginApi,
+  registerWithEmailPassword,
+  createOrderApi,
+  getOrderById,
 } from "../api";
 
 export const addCartItem = (dispatch, product, qty,col,colNum) => {
@@ -115,4 +133,83 @@ export const checkLogin = (dispatch) => {
     dispatch({ type: LOGOUT_REQUEST });    
   }
   return isLogin;
+}
+
+export const registerToFirebase = async (dispatch, userInfo) => {
+  dispatch({ type: BEGIN_REGISTER_REQUEST });
+  try {
+    const user = await registerWithEmailPassword(userInfo.email, userInfo.password, userInfo.name);
+    console.log(user)
+    dispatch({
+      type: SUCCESS_REGISTER_REQUEST,
+      payload: user.providerData[0],
+    })
+    return user;
+  } catch (e) {
+    dispatch({
+      type: FAIL_REGISTER_REQUEST,
+      payload: e.message
+    })
+    console.log(e)
+    return null;
+  }
+}
+
+export const saveShippingAddress = (dispatch, shippingAddress) => {
+  dispatch({
+    type: SAVE_SHIPPING_ADDRESS,
+    payload: shippingAddress,
+  });
+  localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
+}
+
+export const savePaymentMethod = (dispatch, paymentMethod) => {
+  dispatch({
+    type: SAVE_PAYMENT_METHOD,
+    payload: paymentMethod.paymentMethod,
+  });
+}
+
+export const createOrder = async (dispatch, cart) => {
+  dispatch({ type: BEGIN_ORDER_CREATE });
+  try {
+    const item = {
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice,
+    };    
+    const orderInfo = await createOrderApi(item);
+    dispatch({ 
+      type: SUCCESS_ORDER_CREATE, 
+      payload: orderInfo 
+    });
+    dispatch({ type: EMPTY_CART,})
+    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+    localStorage.removeItem("cartItems");
+    return orderInfo;
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_ORDER_CREATE, payload: error });
+    return null;
+  }  
+};
+
+export const requestOrderDetail = async (dispatch, orderId) => {
+  dispatch({ type: BEGIN_ORDER_DETAIL });
+  try {
+    const order = await getOrderById(orderId);
+    dispatch({ 
+      type: SUCCESS_ORDER_DETAIL,
+      payload: order
+    });
+  } catch (error) {
+    dispatch({ 
+      type: FAIL_ORDER_DETAIL, 
+      payload: error 
+    });
+  }
 }

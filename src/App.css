@@ -1237,3 +1237,22 @@ ul {
   border-width: 2px;
   box-shadow:  0px 3px 6px #00000029;
 }
+
+
+/* Checkout Steps */
+.checkout-steps {
+  font-size: 0.6rem;
+  width: 80%;
+  margin-bottom: 2rem;
+}
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+.checkout-steps > div.active {
+  border-top-color: #6366F2;
+  color: #6366F2;
+}
