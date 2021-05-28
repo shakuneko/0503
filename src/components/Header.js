@@ -3,6 +3,7 @@ import NavBar from "./NavBar.js";
 import HamMenu from "./HamMenu";
 import { useState } from "react";
 import { Button } from "antd";
+import UserInfo from "./UserInfo";
 
 export default function Header() {
     const [activeNavItem] = useState('');
@@ -31,6 +32,7 @@ export default function Header() {
             </div>
 
             <div className="navbar">
+                <UserInfo style={{marginRight: '20px'}} />
                 <NavBar />
                 <ViewProfileButton  />
             </div>

@@ -6,6 +6,10 @@ import Home from "./page/Home";
 import Product from './page/Product';
 import Shopping from "./page/Shopping";
 import Shop from "./page/Shop";
+import Login from './page/Login'
+import Register from './page/Register'
+
+
 import { StoreProvider } from "./store";
 
 export const StoreContext = createContext();
@@ -18,9 +22,11 @@ function App() {
           <Route path="/product/:productId" component={Product} />
           <Route path="/shopping" component={Shopping} />
           <Route path="/Shop" component={Shop} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+  
         </Switch>
       </BrowserRouter>
-      <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     </StoreProvider>
     
   

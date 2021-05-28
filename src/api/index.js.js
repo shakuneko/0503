@@ -59,3 +59,14 @@ export const authenticateAnonymously = () => {
 };
 
 
+
+export const signInWithEmailPassword = async (email, password) => {
+  return await auth.signInWithEmailAndPassword(email, password);
+}
+
+export const registerWithEmailPassword = async (email, password, displayName) => {
+  await auth.createUserWithEmailAndPassword(email, password);
+  const user = auth.currentUser;
+  await user.updateProfile({ displayName })
+  return user;
+}
