@@ -46,6 +46,14 @@ import {
  ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
+  let userInfo;
+try {
+  userInfo =  JSON.parse(localStorage.getItem("userInfo"));
+} catch(e) {
+  userInfo = null;
+}
+
+
 const initialState = {
     page: {
        title: "Your Home",
@@ -64,6 +72,17 @@ const initialState = {
       col:'None',
       colNum:0
   },
+      userSignin: {
+         loading: false,
+         userInfo,
+         remember: true,
+         error: "",
+      },
+      userRegister: {
+         loading: false,
+         userInfo: null,
+         error: "",
+      },
  };
  
  function reducer(state, action) {
@@ -274,6 +293,7 @@ const initialState = {
                      error: "",
                   },
                   };
+                  
                case FAIL_SEARCH: 
                   return {
                   ...state,

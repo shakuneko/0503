@@ -63,7 +63,8 @@ export default function CartModal({ isModalVisible, toggleModal }) {
                         <div className="option-container">
                            <div className="shopping-content">
                               <div className="shopping-content-color">
-                                 <Select 
+                              <div className="cart-color">{item.col}</div>
+                                 {/* <Select 
                                     defaultValue={"None"} 
                                     value={item.col}
                                     className="select-style cart-top-right-container"
@@ -76,7 +77,7 @@ export default function CartModal({ isModalVisible, toggleModal }) {
                                     {item.col} 
                                     </Option>
                                  ))}
-                              </Select> 
+                              </Select>  */}
                               </div>
 
                               <div  className="shopping-qty">

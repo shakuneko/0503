@@ -1,0 +1,37 @@
+[
+    {
+       "title": "NORDIC NEST Shopping Cart",
+       "name": "allProducts",
+       "url": "/"
+    },
+    {
+       "title": "Products",
+       "name": "Products",
+       "url": "/products"
+    },
+    {
+       "title": "Inspirations",
+       "name": "Inspirations",
+       "url": "/inspirations"
+    },
+    {
+       "title": "Shop",
+       "name": "Shop",
+       "url": "/shop"
+    },
+    {
+       "title": "Designers",
+       "name": "Designers",
+       "url": "/designers"
+    },
+    {
+       "title": "About us",
+       "name": "About us",
+       "url": "/about-us"
+    },
+    {
+       "title": "Feed JSON Page",
+       "name": "FeedJSONPage",
+       "url": "/admin/feed-products"
+    }
+ ]

@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
+import jsonInfo from "../json/jsonInfo.json";
+import products from "../json/products.json";
 // import products from "../json/products.json";
 // import inspirations from "../json/inspirations.json";
 // import shop from "../json/shop.json";
@@ -41,6 +43,20 @@ const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
 // };
 
 const auth = firebase.auth();
+
+const productsCollectionRef = firebase.firestore().collection("products");
+const productsDocRef = productsCollectionRef.doc("json");
+const allProductsCollectionRef = productsDocRef.collection("allProducts");
+// const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
+
+
+export const getProductById = async (productId) => {
+  // REFERENCE PRODUCTS COLLECTION
+  const doc = await allProductsCollectionRef.doc(productId).get();
+  return doc.data()
+}
+
+
 
 export const postChatContent = (senderName, message) => {
   // REFERENCE CHATROOM DOCUMENT
@@ -123,4 +139,23 @@ export const getOrderByUser = async () => {
 
 export const signOut = () => {
   auth.signOut();
+}
+
+export const getProducts = async (url) => {
+  const collection = jsonInfo.find(element => element.url === url);
+  const collectionName = collection.name || "allproducts";
+  console.log(collectionName)
+  let jsonProducts = [];
+
+  
+  // QUERY PRODUCTS
+  let querySnapshot;
+  if (collectionName === "allproducts")
+    querySnapshot = await allProductsCollectionRef.get();
+  else
+    querySnapshot = await allProductsCollectionRef.where("name", "==", collectionName).get();
+  querySnapshot.forEach((doc) => {
+    jsonProducts.push(doc.data());
+  });
+  return jsonProducts;
 }
