@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Badge } from "antd";
 import { CartIcon } from "./Icon";
-
 import { StoreContext } from "../store"
 import { Link } from "react-router-dom";
 
@@ -17,12 +16,13 @@ export default function CartSummary() {
     
   return (
     <>
-       <Link to="/shopping"  >
+       <Link to="/shopping">
         <Badge count={count} size={"small"} style={{ color: 'white', backgroundColor: '#FFC72D' }}>
           <CartIcon size={20}/>
         </Badge>
         
       </Link>
+    
       {/* <CartModal
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}

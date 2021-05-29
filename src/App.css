@@ -803,6 +803,12 @@ ul {
 }
 
 /*cart*/
+.cart-summary-text {
+  color: black;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-top: -4px;
+}
 .cart-item {
   display: flex;
   justify-content: space-between;

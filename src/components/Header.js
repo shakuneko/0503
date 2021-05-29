@@ -32,7 +32,7 @@ export default function Header() {
             </div>
 
             <div className="navbar">
-                <UserInfo style={{marginRight: '20px'}} />
+                {/* <UserInfo style={{marginRight: '20px'}} /> */}
                 <NavBar />
                 <ViewProfileButton  />
             </div>
