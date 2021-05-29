@@ -1,14 +1,9 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-
 import jsonInfo from "../json/jsonInfo.json";
-import products from "../json/products.json";
-// import products from "../json/products.json";
-// import inspirations from "../json/inspirations.json";
-// import shop from "../json/shop.json";
-// import designers from "../json/designers.json";
-// import aboutus from "../json/about-us.json";
+
+
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -22,33 +17,14 @@ const firebaseConfig = {
 
 };
 
+
 firebase.initializeApp(firebaseConfig);
-const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
-
-// export const getJSON = (url) => {
-//   switch (url) {
-//     case "/":
-//       return products;
-//     case "/inspirations":
-//       return inspirations;
-//     case "/shop":
-//       return shop;
-//     case "/designers":
-//       return designers;
-//     case "/about-us":
-//       return aboutus;
-//     default:
-//       return products;
-//   }
-// };
-
-const auth = firebase.auth();
-
 const productsCollectionRef = firebase.firestore().collection("products");
 const productsDocRef = productsCollectionRef.doc("json");
 const allProductsCollectionRef = productsDocRef.collection("allProducts");
-// const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
+const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
 
+const auth = firebase.auth();
 
 export const getProductById = async (productId) => {
   // REFERENCE PRODUCTS COLLECTION
@@ -143,17 +119,15 @@ export const signOut = () => {
 
 export const getProducts = async (url) => {
   const collection = jsonInfo.find(element => element.url === url);
-  const collectionName = collection.name || "allproducts";
-  console.log(collectionName)
+  const collectionName = collection.name || "allProducts";
   let jsonProducts = [];
 
-  
   // QUERY PRODUCTS
   let querySnapshot;
-  if (collectionName === "allproducts")
+  if (collectionName === "allProducts")
     querySnapshot = await allProductsCollectionRef.get();
   else
-    querySnapshot = await allProductsCollectionRef.where("name", "==", collectionName).get();
+    querySnapshot = await allProductsCollectionRef.where("category", "==", collectionName).get();
   querySnapshot.forEach((doc) => {
     jsonProducts.push(doc.data());
   });

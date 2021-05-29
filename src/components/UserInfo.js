@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { UserOutlined, UserSwitchOutlined } from '@ant-design/icons';
+// import { UserOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import { PofileIcon } from "./Icon";
 import { StoreContext } from "../store"

@@ -3,7 +3,6 @@ import NavBar from "./NavBar.js";
 import HamMenu from "./HamMenu";
 import { useState } from "react";
 import { Button } from "antd";
-import UserInfo from "./UserInfo";
 
 export default function Header() {
     const [activeNavItem] = useState('');
