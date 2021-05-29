@@ -182,14 +182,6 @@ export const rememberLoginUser = (dispatch, remember) => {
   })
 }
 
-export const checkLogin = (dispatch) => {
-  const isLogin = checkLoginApi();
-  if(!isLogin) {
-    localStorage.removeItem('orderInfo')
-    dispatch({ type: LOGOUT_REQUEST });    
-  }
-  return isLogin;
-}
 
 export const registerToFirebase = async (dispatch, userInfo) => {
   dispatch({ type: BEGIN_REGISTER_REQUEST });
@@ -313,4 +305,12 @@ export const getUserOrders = async (dispatch) => {
 export const logoutFromFirebase = async (dispatch) => {
   signOut();
   dispatch({ type: LOGOUT_REQUEST });
+}
+export const checkLogin = (dispatch) => {
+  const isLogin = checkLoginApi();
+  if(!isLogin) {
+    localStorage.removeItem('orderInfo')
+    dispatch({ type: LOGOUT_REQUEST });    
+  }
+  return isLogin;
 }

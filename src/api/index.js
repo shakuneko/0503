@@ -96,10 +96,7 @@ export const updateUserInfoApi = async (email, password, displayName) => {
     await user.updatePassword(password);
   return user;
 }
-export const checkLoginApi = () => {
-  const user = auth.currentUser;
-  return user.uid?  true : false;
-}
+
 
 export const getOrderByUser = async () => {
   const user = auth.currentUser.uid;
@@ -132,4 +129,8 @@ export const getProducts = async (url) => {
     jsonProducts.push(doc.data());
   });
   return jsonProducts;
+}
+export const checkLoginApi = () => {
+  const user = auth.currentUser;
+  return user.uid?  true : false;
 }
