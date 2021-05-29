@@ -28,10 +28,6 @@
        "title": "About us",
        "name": "About us",
        "url": "/about-us"
-    },
-    {
-       "title": "Feed JSON Page",
-       "name": "FeedJSONPage",
-       "url": "/admin/feed-products"
     }
+  
  ]
