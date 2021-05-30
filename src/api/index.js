@@ -110,10 +110,6 @@ export const getOrderByUser = async () => {
   return jsonOrders;
 }
 
-export const signOut = () => {
-  auth.signOut();
-}
-
 export const getProducts = async (url) => {
   const collection = jsonInfo.find(element => element.url === url);
   const collectionName = collection.name || "allProducts";
@@ -130,7 +126,12 @@ export const getProducts = async (url) => {
   });
   return jsonProducts;
 }
-export const checkLoginApi = () => {
-  const user = auth.currentUser;
-  return user.uid?  true : false;
+
+export const signOut = () => {
+  auth.signOut();
 }
+
+// export const checkLoginApi = () => {
+//   const user = auth.currentUser;
+//   return user.uid?  true : false;
+// }

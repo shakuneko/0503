@@ -43,7 +43,6 @@ import {
   updateUserInfoApi,
   createOrderApi,
   getOrderById,
-  checkLoginApi,
   getOrderByUser,
 } from "../api/index";
 
@@ -306,11 +305,12 @@ export const logoutFromFirebase = async (dispatch) => {
   signOut();
   dispatch({ type: LOGOUT_REQUEST });
 }
-export const checkLogin = (dispatch) => {
-  const isLogin = checkLoginApi();
-  if(!isLogin) {
-    localStorage.removeItem('orderInfo')
-    dispatch({ type: LOGOUT_REQUEST });    
-  }
-  return isLogin;
-}
+
+// export const checkLogin = (dispatch) => {
+//   const isLogin = checkLoginApi();
+//   if(!isLogin) {
+//     localStorage.removeItem('orderInfo')
+//     dispatch({ type: LOGOUT_REQUEST });    
+//   }
+//   return isLogin;
+// }
