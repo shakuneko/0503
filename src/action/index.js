@@ -32,11 +32,15 @@ import {
   SEARCH_USER_ORDERS,
   SUCCESS_SEARCH,
   FAIL_SEARCH,
+  BEGIN_PRODUCTS_FEED,
+  SUCCESS_PRODUCTS_FEED,
+  FAIL_PRODUCTS_FEED,
 } from "../utils/constants";
 
 import {
   getProducts,
   getProductById,
+  feedProducts,
   signInWithEmailPassword,
   registerWithEmailPassword,
   signOut,
@@ -216,6 +220,18 @@ export const savePaymentMethod = (dispatch, paymentMethod) => {
     payload: paymentMethod.paymentMethod,
   });
 }
+
+export const feedJSONToFirebase = async (dispatch) => {
+  dispatch({ type: BEGIN_PRODUCTS_FEED });
+  try {
+    await feedProducts();
+    dispatch({ type: SUCCESS_PRODUCTS_FEED });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_PRODUCTS_FEED, payload: error });
+  }
+}
+
 
 export const createOrder = async (dispatch, cart) => {
   dispatch({ type: BEGIN_ORDER_CREATE });

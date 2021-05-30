@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import jsonInfo from "../json/jsonInfo.json";
-
+import products from "../json/products.json";
 
 
 const firebaseConfig = {
@@ -51,6 +51,21 @@ export const postChatContent = (senderName, message) => {
 export const authenticateAnonymously = () => {
   return firebase.auth().signInAnonymously();
 };
+
+export const feedProducts = () => {
+  products.forEach((product) => {
+    const docRef = allProductsCollectionRef.doc();
+    const id = docRef.id;
+    const user = auth.currentUser._id;
+
+    // Store Data for Aggregation Queries
+    docRef.set({
+      ...product,
+      user,
+      id
+    });
+  })
+}
 
 
 

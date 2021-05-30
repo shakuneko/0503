@@ -3,37 +3,38 @@ import useReducerWithThunk from "use-reducer-thunk";
 import Cookie from "js-cookie"
 import { 
    SET_PAGE_TITLE,
+   SET_PAGE_CONTENT,
    SET_NAVBAR_ACTIVEITEM,
    ADD_CART_ITEM,
    REMOVE_CART_ITEM,
+   EMPTY_CART,
+   SAVE_SHIPPING_ADDRESS,
+   SAVE_PAYMENT_METHOD,
    SET_PRODUCT_DETAIL,
-
+   BEGIN_PRODUCTS_FEED,
+   SUCCESS_PRODUCTS_FEED,
+   FAIL_PRODUCTS_FEED,
+   BEGIN_PRODUCTS_REQUEST,
+   SUCCESS_PRODUCTS_REQUEST,
+   FAIL_PRODUCTS_REQUEST,
    BEGIN_LOGIN_REQUEST,
    SUCCESS_LOGIN_REQUEST,
    FAIL_LOGIN_REQUEST,
    LOGOUT_REQUEST,
    REMEMBER_LOGIN,
-
    BEGIN_REGISTER_REQUEST,
    SUCCESS_REGISTER_REQUEST,
    FAIL_REGISTER_REQUEST,
-
-   SAVE_SHIPPING_ADDRESS,
-
-   BEGIN_ORDER_CREATE,
-   SUCCESS_ORDER_CREATE,
-   FAIL_ORDER_CREATE,
-
-   BEGIN_ORDER_DETAIL,
-   SUCCESS_ORDER_DETAIL,
-   FAIL_ORDER_DETAIL,
-
    BEGIN_UPDATE_USERINFO,
    SUCCESS_UPDATE_USERINFO,
    FAIL_UPDATE_USERINFO,
-
-   SAVE_PAYMENT_METHOD,
-
+   BEGIN_ORDER_CREATE,
+   SUCCESS_ORDER_CREATE,
+   FAIL_ORDER_CREATE,
+   RESET_ORDER,
+   BEGIN_ORDER_DETAIL,
+   SUCCESS_ORDER_DETAIL,
+   FAIL_ORDER_DETAIL,
    SEARCH_USER_ORDERS,
    SUCCESS_SEARCH,
    FAIL_SEARCH,
@@ -111,6 +112,10 @@ const initialState = {
          order: { cartItems: []},
          error: null,
       },
+      feedProducts: {
+         loading: false,
+         error: null,
+       },
       requestProducts: {
          loading: false,
          error: null,
@@ -132,6 +137,14 @@ const initialState = {
                 title: action.payload,
              },
           };
+          case SET_PAGE_CONTENT:
+            return {
+              ...state,
+              page: {
+                ...state.page,
+                ...action.payload,
+              },
+            };
           case SET_NAVBAR_ACTIVEITEM:
             return {
                ...state,
@@ -154,9 +167,49 @@ const initialState = {
              case REMOVE_CART_ITEM:
                 cartItems = state.cartItems.filter((x) => x.id !== action.payload);
                 return { ...state, cartItems };
+                case EMPTY_CART:
+                  cartItems = [];
+                  return { ...state, cart: { ...state.cart, cartItems } };
                case SET_PRODUCT_DETAIL:
                   return { ...state, productDetail:action.payload };
-                  
+               case BEGIN_PRODUCTS_REQUEST:
+                  return {
+                     ...state,
+                     requestProducts: { ...state.requestProducts, loading: true },
+                  };
+                  case SUCCESS_PRODUCTS_REQUEST:
+                  return {
+                     ...state,
+                     requestProducts: { ...state.requestProducts, loading: false },
+                  };
+                  case FAIL_PRODUCTS_REQUEST:
+                  return {
+                     ...state,
+                     requestProducts: {
+                        ...state.requestProducts,
+                        loading: false,
+                        error: action.payload,
+                     },
+                  };
+                  case BEGIN_PRODUCTS_FEED:
+                  return {
+                     ...state,
+                     feedProducts: { ...state.feedProducts, loading: true },
+                  };
+                  case SUCCESS_PRODUCTS_FEED:
+                  return {
+                     ...state,
+                     feedProducts: { ...state.feedProducts, loading: false },
+                  };
+                  case FAIL_PRODUCTS_FEED:
+                  return {
+                     ...state,
+                     feedProducts: {
+                        ...state.feedProducts,
+                        loading: false,
+                        error: action.payload,
+                     },
+                  };
          case BEGIN_LOGIN_REQUEST:
             return { ...state, userSignin: { ...state.userSignin, loading: true } };
             case SUCCESS_LOGIN_REQUEST:
@@ -265,6 +318,16 @@ const initialState = {
                error: action.payload,
                },
             };
+            case RESET_ORDER:
+               return {
+                 ...state,
+                 orderInfo: {
+                   ...state.orderInfo,
+                   loading: false,
+                   order: { id: "" },
+                   success: false,
+                 },
+               };
 
             case BEGIN_ORDER_DETAIL:
                return {
