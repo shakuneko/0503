@@ -1,5 +1,4 @@
 import { Layout } from 'antd';
-import NavBar from "../components/NavBar";
 import AppHeader from "../components/Header"
 import AppFooter from "../components/Footer"
 import Feeder from "../components/Feeder";
@@ -9,9 +8,9 @@ const { Header, Content, Footer } = Layout;
 function Feed() {
   return (
     <Layout className="container main-layout">
-      <Layout className="bg-gray nav-area">
+      {/* <Layout className="bg-gray nav-area">
         <NavBar />
-      </Layout>
+      </Layout> */}
       <Layout className="bg-gray main-area">
         <Header className="layout-header">
           <AppHeader title="Feed JSON Page" />

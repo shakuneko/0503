@@ -3,6 +3,7 @@ import { Badge } from "antd";
 import { CartIcon } from "./Icon";
 import { StoreContext } from "../store"
 import { Link } from "react-router-dom";
+// import CartModal from "./CartModal";
 
 export default function CartSummary() {
 

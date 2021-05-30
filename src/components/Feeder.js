@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Card, Button } from "antd";
-import { feedJSONToFirebase } from "../actions"
+import { feedJSONToFirebase } from "../action"
 import { StoreContext } from "../store";
 
 export default function Feeder() {

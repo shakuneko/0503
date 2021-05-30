@@ -11,6 +11,7 @@ import Register from './page/Register'
 import Profile from './page/Profile'
 import Shipping from './page/Shipping'
 import Payment from './page/Payment'
+import Feed from './page/Feed'
 
 
 import { StoreProvider } from "./store";
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/admin/feed-products" component={Feed} />
           <Route path="/product/:productId" component={Product} />
           <Route path="/shopping" component={Shopping} />
           <Route path="/Shop" component={Shop} />
