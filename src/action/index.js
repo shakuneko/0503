@@ -113,6 +113,7 @@ export const setProductDetail = async (dispatch, productId, qty,col,colNum) => {
         colNum
             }
           })
+          
     dispatch({ type: SUCCESS_PRODUCTS_REQUEST });
   } catch (error) {
     console.log(error);
