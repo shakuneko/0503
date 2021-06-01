@@ -20,7 +20,7 @@ export default function Shopproduct(){
                       <ShopNavBar />
                       </Sider>
                     </Layout>
-                <section class="shop-ant-layout">
+                <section className="shop-ant-layout">
                 <Row gutter={[32,32]}>
                   {products.map(product => (
                     <Col 

@@ -5,12 +5,12 @@ export default function Footer(){
                 <div className=" subscribe ">
                     <h4 className="subscribe-title">GET OUR NEWSLETTER</h4>
                     <p className="subscribe-subtitle">Sign up now for designs and inspiration.</p>
-                    <div class="subscribe-box">
+                    <div className="subscribe-box">
                         <div className="subscribe-email">
                             <input type="search" id="search" placeholder="Enter Your Email" />
                         </div>
                         <div className=" div-subscribe-btn ">
-                            <button  type="button" class="subscribe-btn">Subscribe</button>
+                            <button  type="button" className="subscribe-btn">Subscribe</button>
                         </div>
                     </div>
                 </div>

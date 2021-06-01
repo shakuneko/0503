@@ -25,7 +25,7 @@ function Home(){
             <Header className="layout-header">
                 <AppHeader title={title}/>
             </Header>
-            <Content classNmae="layout-content">
+            <Content className="layout-content">
                 <ProductList />
             </Content>
         </Layout> 
