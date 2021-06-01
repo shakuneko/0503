@@ -32,26 +32,22 @@ export const getProductById = async (productId) => {
   return doc.data()
 }
 
+export const getProducts = async (url) => {
+  const collection = jsonInfo.find(element => element.url === url);
+  const collectionName = collection.name || "allProducts";
+  let jsonProducts = [];
 
-
-export const postChatContent = (senderName, message) => {
-  // REFERENCE CHATROOM DOCUMENT
-  let chatroomDocRef = firebase.firestore()
-    .collection("chatrooms")
-    .doc("chatroom2");
-  // REFERENCE CHATROOM MESSAGES
-  let messagesCollectionRef = chatroomDocRef.collection("messages");
-  messagesCollectionRef.add({
-    senderName,
-    message,
-    timeStamp: Date.now(),
+  // QUERY PRODUCTS
+  let querySnapshot;
+  if (collectionName === "allProducts")
+    querySnapshot = await allProductsCollectionRef.get();
+  else
+    querySnapshot = await allProductsCollectionRef.where("category", "==", collectionName).get();
+  querySnapshot.forEach((doc) => {
+    jsonProducts.push(doc.data());
   });
+  return jsonProducts;
 }
-
-export const authenticateAnonymously = () => {
-  return firebase.auth().signInAnonymously();
-};
-
 export const feedProducts = () => {
   products.forEach((product) => {
     const docRef = allProductsCollectionRef.doc();
@@ -67,8 +63,6 @@ export const feedProducts = () => {
   })
 }
 
-
-
 export const signInWithEmailPassword = async (email, password) => {
   return await auth.signInWithEmailAndPassword(email, password);
 }
@@ -80,8 +74,16 @@ export const registerWithEmailPassword = async (email, password, displayName) =>
   return user;
 }
 
-
-
+export const updateUserInfoApi = async (email, password, displayName) => {
+  const user = auth.currentUser;
+  if(displayName)
+    await user.updateProfile({ displayName });
+  if(email)
+    await user.updateEmail(String(email));
+  if(password)
+    await user.updatePassword(password);
+  return user;
+}
 export const createOrderApi = async (order) => {
   const user = auth.currentUser.uid;
   const orderRef = await allOrdersCollectionRef.doc();
@@ -101,18 +103,6 @@ export const getOrderById = async (orderId) => {
   return doc.data()
 }
 
-export const updateUserInfoApi = async (email, password, displayName) => {
-  const user = auth.currentUser;
-  if(displayName)
-    await user.updateProfile({ displayName });
-  if(email)
-    await user.updateEmail(String(email));
-  if(password)
-    await user.updatePassword(password);
-  return user;
-}
-
-
 export const getOrderByUser = async () => {
   const user = auth.currentUser.uid;
   let jsonOrders = [];
@@ -125,26 +115,30 @@ export const getOrderByUser = async () => {
   return jsonOrders;
 }
 
-export const getProducts = async (url) => {
-  const collection = jsonInfo.find(element => element.url === url);
-  const collectionName = collection.name || "allProducts";
-  let jsonProducts = [];
-
-  // QUERY PRODUCTS
-  let querySnapshot;
-  if (collectionName === "allProducts")
-    querySnapshot = await allProductsCollectionRef.get();
-  else
-    querySnapshot = await allProductsCollectionRef.where("category", "==", collectionName).get();
-  querySnapshot.forEach((doc) => {
-    jsonProducts.push(doc.data());
-  });
-  return jsonProducts;
-}
-
 export const signOut = () => {
   auth.signOut();
 }
+
+
+// export const postChatContent = (senderName, message) => {
+//   // REFERENCE CHATROOM DOCUMENT
+//   let chatroomDocRef = firebase.firestore()
+//     .collection("chatrooms")
+//     .doc("chatroom2");
+//   // REFERENCE CHATROOM MESSAGES
+//   let messagesCollectionRef = chatroomDocRef.collection("messages");
+//   messagesCollectionRef.add({
+//     senderName,
+//     message,
+//     timeStamp: Date.now(),
+//   });
+// }
+
+// export const authenticateAnonymously = () => {
+//   return firebase.auth().signInAnonymously();
+// };
+
+
 
 // export const checkLoginApi = () => {
 //   const user = auth.currentUser;

@@ -5,29 +5,29 @@
        "url": "/"
     },
     {
-       "title": "Products",
-       "name": "Products",
-       "url": "/products"
+       "title": "Clock",
+       "name": "Clock",
+       "url": "/products/clock"
     },
     {
-       "title": "Inspirations",
-       "name": "Inspirations",
-       "url": "/inspirations"
+       "title": "Chair",
+       "name": "Chair",
+       "url": "/products/chair"
     },
     {
-       "title": "Shop",
-       "name": "Shop",
-       "url": "/shop"
+       "title": "Table",
+       "name": "Table",
+       "url": "/products/table"
     },
     {
-       "title": "Designers",
-       "name": "Designers",
-       "url": "/designers"
+       "title": "Lighting",
+       "name": "Lighting",
+       "url": "/products/lighting"
     },
     {
-       "title": "About us",
-       "name": "About us",
-       "url": "/about-us"
+       "title": "Other",
+       "name": "Other",
+       "url": "/products/other"
     },
     {
       "title": "Feed JSON Page",

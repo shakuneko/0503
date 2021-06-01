@@ -29,8 +29,8 @@ export default function ShopNavBar() {
                 <ShopNavItem to="/lighting" className="shop-nav-item" activeClassName="nav-item--active">
                     Lighting
                 </ShopNavItem>
-                <ShopNavItem to="/furniture" className="shop-nav-item" activeClassName="nav-item--active">
-                    Furniture
+                <ShopNavItem to="/other" className="shop-nav-item" activeClassName="nav-item--active">
+                    Other
                 </ShopNavItem>
             </div>
             <Drawer
@@ -60,8 +60,8 @@ export default function ShopNavBar() {
                 <ShopNavItem onClose={handleCloseDrawer} to="/clock" className="nav-item" activeClassName="nav-item--active">
                     Clock
                 </ShopNavItem>
-                <ShopNavItem onClose={handleCloseDrawer} to="/furniture" className="nav-item" activeClassName="nav-item--active">
-                    Furniture
+                <ShopNavItem onClose={handleCloseDrawer} to="/other" className="nav-item" activeClassName="nav-item--active">
+                    Other
                 </ShopNavItem>
             </Drawer>
         </div>

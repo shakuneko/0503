@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import ProductItem from "./ProductItem";
 import DesignersItem from "./DesignersItem";
-import products from "../json/products.json";
 import designers from "../json/designer-info.json"
 import {Row,Col}from "antd";
+import { StoreContext } from "../store";
 
 export default function ProductList(){
+  const { state: { page: { products } } } = useContext(StoreContext);
     return(
       <div  className="product">
           <img alt="" className="header-pic"src="https://img.onl/u7zjYS"/>

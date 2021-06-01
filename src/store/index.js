@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import useReducerWithThunk from "use-reducer-thunk";
-import Cookie from "js-cookie"
+// import Cookie from "js-cookie"
 import { 
    SET_PAGE_TITLE,
    SET_PAGE_CONTENT,
@@ -42,22 +42,29 @@ import {
  
 
  export const StoreContext = createContext();
- let cartItems = Cookie.getJSON("cartItems")
- ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
-
-  let userInfo;
-try {
-  userInfo =  JSON.parse(localStorage.getItem("userInfo"));
+ let cartItems;
+try{
+  cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  if (!cartItems) cartItems = [];
 } catch(e) {
-  userInfo = null;
+  cartItems = [];
 }
+//  let cartItems = Cookie.getJSON("cartItems")
+//  ? JSON.parse(localStorage.getItem("cartItems"))
+//   : [];
 
 let shippingAddress;
 try {
   shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
 } catch(e) {
   shippingAddress = {};
+}
+
+  let userInfo;
+try {
+  userInfo =  JSON.parse(localStorage.getItem("userInfo"));
+} catch(e) {
+  userInfo = null;
 }
 
 let orderInfo_order;
@@ -70,37 +77,30 @@ try {
 const initialState = {
       allProducts: [],
       page: {
-         title: "Your Home",
+      title: "Your Home",
       products: [],
       },
+
+      // cartItems,
+      productDetail: {
+         product: {
+         color:[],
+         },
+         qty: 1,
+         col:'None',
+         colNum:0
+         },
+
       navBar: {
       activeItem: "/",
       },
-      cartItems,
-      productDetail: {
-      product: {
-         color:[]
-      },
-      qty: 1,
-      col:'None',
-      colNum:0
-      },
-      userSignin: {
-         loading: false,
-         userInfo,
-         remember: true,
-         error: "",
-      },
-      userRegister: {
-         loading: false,
-         userInfo: null,
-         error: "",
-      },
+   
       cart: {
-      cartItems,
-      shippingAddress,
-      paymentMethod: 'Google',
-      },
+         cartItems,
+         shippingAddress,
+         paymentMethod: 'Google',
+         },
+
       orderInfo: {
          loading: false,
          order: orderInfo_order,
@@ -112,14 +112,29 @@ const initialState = {
          order: { cartItems: []},
          error: null,
       },
+
       feedProducts: {
          loading: false,
          error: null,
        },
-      requestProducts: {
+
+       requestProducts: {
          loading: false,
          error: null,
       },
+
+      userSignin: {
+         loading: false,
+         userInfo,
+         remember: true,
+         error: "",
+      },
+      userRegister: {
+         loading: false,
+         userInfo: null,
+         error: "",
+      },
+  
       userOrders: {
          loading: false,
          orders: [],
@@ -129,87 +144,99 @@ const initialState = {
  
  function reducer(state, action) {
     switch (action.type) {
-       case SET_PAGE_TITLE:
-          return {
-             ...state,
-             page: {
-                ...state.page,
-                title: action.payload,
-             },
-          };
-          case SET_PAGE_CONTENT:
-            return {
-              ...state,
-              page: {
-                ...state.page,
-                ...action.payload,
-              },
-            };
-          case SET_NAVBAR_ACTIVEITEM:
-            return {
-               ...state,
-               navBar: {
-                  activeItem: action.payload
-               }
-            };
+      case SET_PAGE_TITLE:
+         return {
+            ...state,
+            page: {
+               ...state.page,
+               title: action.payload,
+            },
+         };
+      case SET_PAGE_CONTENT:
+      return {
+         ...state,
+         page: {
+            ...state.page,
+            ...action.payload,
+         },
+      };
+      case SET_NAVBAR_ACTIVEITEM:
+      return {
+         ...state,
+         navBar: {
+            activeItem: action.payload
+         }
+      };
 
-            case ADD_CART_ITEM:
-                const item = action.payload;
-                const product = state.cartItems.find((x) => x.id === item.id);
-                if (product) {
-                   cartItems = state.cartItems.map((x) =>
-                      x.id === product.id ? item : x
-                   );
-                   return { ...state, cartItems };
-                }
-                cartItems = [...state.cartItems, item];
-                return { ...state, cartItems };
-             case REMOVE_CART_ITEM:
-                cartItems = state.cartItems.filter((x) => x.id !== action.payload);
-                return { ...state, cartItems };
-                case EMPTY_CART:
-                  cartItems = [];
-                  return { ...state, cart: { ...state.cart, cartItems } };
-               case SET_PRODUCT_DETAIL:
-                  return { ...state, productDetail:action.payload };
-               case BEGIN_PRODUCTS_REQUEST:
-                  return {
-                     ...state,
-                     requestProducts: { ...state.requestProducts, loading: true },
-                  };
-                  case SUCCESS_PRODUCTS_REQUEST:
-                  return {
-                     ...state,
-                     requestProducts: { ...state.requestProducts, loading: false },
-                  };
-                  case FAIL_PRODUCTS_REQUEST:
-                  return {
-                     ...state,
-                     requestProducts: {
-                        ...state.requestProducts,
-                        loading: false,
-                        error: action.payload,
-                     },
-                  };
-                  case BEGIN_PRODUCTS_FEED:
-                  return {
-                     ...state,
-                     feedProducts: { ...state.feedProducts, loading: true },
-                  };
-                  case SUCCESS_PRODUCTS_FEED:
-                  return {
-                     ...state,
-                     feedProducts: { ...state.feedProducts, loading: false },
-                  };
-                  case FAIL_PRODUCTS_FEED:
-                  return {
-                     ...state,
-                     feedProducts: {
-                        ...state.feedProducts,
-                        loading: false,
-                        error: action.payload,
-                     },
-                  };
+      case ADD_CART_ITEM:
+         const item = action.payload;
+         const product = state.cart.cartItems.find((x) => x.id === item.id);
+         if (product) {
+            cartItems = state.cart.cartItems.map((x) =>
+               x.id === product.id ? item : x
+            );
+            return { ...state,cart: { ...state.cart, cartItems } };
+         }
+         cartItems = [...state.cart.cartItems, item];
+         return { ...state, cart: { ...state.cart, cartItems } };
+
+      case REMOVE_CART_ITEM:
+         cartItems = state.cart.cartItems.filter((x) => x.id !== action.payload);
+         return { ...state, cart: { ...state.cart, cartItems } };
+         case EMPTY_CART:
+         cartItems = [];
+         return { ...state, cart: { ...state.cart, cartItems } };
+      case SAVE_SHIPPING_ADDRESS:
+         console.log('action.payload.shippingAddress = ')
+         console.log(action.payload)
+         return { ...state, cart: { ...state.cart, shippingAddress: action.payload } };
+      
+      case SAVE_PAYMENT_METHOD:
+         return { ...state, cart: { ...state.cart, paymentMethod: action.payload } };   
+
+         case SET_PRODUCT_DETAIL:
+         return { 
+            ...state,
+             productDetail: { ...state.productDetail, ...action.payload },
+         };
+      case BEGIN_PRODUCTS_REQUEST:
+         return {
+            ...state,
+            requestProducts: { ...state.requestProducts, loading: true },
+         };
+         case SUCCESS_PRODUCTS_REQUEST:
+         return {
+            ...state,
+            requestProducts: { ...state.requestProducts, loading: false },
+         };
+         case FAIL_PRODUCTS_REQUEST:
+         return {
+            ...state,
+            requestProducts: {
+               ...state.requestProducts,
+               loading: false,
+               error: action.payload,
+            },
+         };
+         case BEGIN_PRODUCTS_FEED:
+         return {
+            ...state,
+            feedProducts: { ...state.feedProducts, loading: true },
+         };
+         case SUCCESS_PRODUCTS_FEED:
+         return {
+            ...state,
+            feedProducts: { ...state.feedProducts, loading: false },
+         };
+         case FAIL_PRODUCTS_FEED:
+         return {
+            ...state,
+            feedProducts: {
+               ...state.feedProducts,
+               loading: false,
+               error: action.payload,
+            },
+         };
          case BEGIN_LOGIN_REQUEST:
             return { ...state, userSignin: { ...state.userSignin, loading: true } };
             case SUCCESS_LOGIN_REQUEST:
@@ -222,35 +249,58 @@ const initialState = {
                   error: "",
                },
             };
-            case FAIL_LOGIN_REQUEST:
+         case FAIL_LOGIN_REQUEST:
+         return {
+            ...state,
+            userSignin: {
+               ...state.userSignin,
+               loading: false,
+               userInfo: null,
+               error: action.payload,
+            },
+         };
+
+                  
+         case BEGIN_UPDATE_USERINFO:
+            return { ...state, userSignin: { ...state.userSignin, loading: true } };
+         case SUCCESS_UPDATE_USERINFO:
+            return {
+            ...state,
+            userSignin: {
+               ...state.userSignin,
+               loading: false,
+               userInfo: action.payload,
+               error: "",
+            },
+            };
+         case FAIL_UPDATE_USERINFO:
+            return {
+            ...state,
+            userSignin: {
+               ...state.userSignin,
+               loading: false,
+               error: action.payload,
+            },
+                  };
+         case LOGOUT_REQUEST:
+            cartItems = [];
             return {
                ...state,
                userSignin: {
                   ...state.userSignin,
-                  loading: false,
                   userInfo: null,
-                  error: action.payload,
                },
             };
-            case LOGOUT_REQUEST:
-               cartItems = [];
-               return {
-                  ...state,
-                  userSignin: {
-                     ...state.userSignin,
-                     userInfo: null,
-                  },
-               };
-               case REMEMBER_LOGIN:
-               return {
-                  ...state,
-                  userSignin: {
-                     ...state.userSignin,
-                     remember: action.payload,
-                  },
-               };
-         
-         
+            case REMEMBER_LOGIN:
+            return {
+               ...state,
+               userSignin: {
+                  ...state.userSignin,
+                  remember: action.payload,
+               },
+            };
+      
+
          case BEGIN_REGISTER_REQUEST:
             return {
                ...state,
@@ -280,13 +330,9 @@ const initialState = {
                   error: action.payload,
                },
             };
-            case SAVE_SHIPPING_ADDRESS:
-               console.log('action.payload.shippingAddress = ')
-               console.log(action.payload)
-               return { ...state, cart: { ...state.cart, shippingAddress: action.payload } };
-            case SAVE_PAYMENT_METHOD:
-               return { ...state, cart: { ...state.cart, paymentMethod: action.payload } };   
-               
+
+      
+         
             case BEGIN_ORDER_CREATE:
             return {
             ...state,
@@ -296,113 +342,92 @@ const initialState = {
                success: false,
                }
             };
-         case SUCCESS_ORDER_CREATE:
-            return {
-            ...state,
-            orderInfo: {
-               ...state.orderInfo,
-               loading: false,
-               order: action.payload,
-               success: true,
-               error: null,
-               },
-            };
-         case FAIL_ORDER_CREATE:
-            return {
-            ...state,
-            orderInfo: {
-               ...state.orderInfo,
-               loading: false,
-               order: { id: "" },
-               success: false,
-               error: action.payload,
-               },
-            };
-            case RESET_ORDER:
-               return {
-                 ...state,
-                 orderInfo: {
-                   ...state.orderInfo,
-                   loading: false,
-                   order: { id: "" },
-                   success: false,
-                 },
-               };
-
-            case BEGIN_ORDER_DETAIL:
-               return {
-                 ...state,
-                 orderDetail: {
-                   ...state.orderDetail,
-                   loading: true,
-                 }
-               };
-             
-             case SUCCESS_ORDER_DETAIL:
-               return {
-                 ...state,
-                 orderDetail: {
-                   ...state.orderDetail,
-                   loading: false,
-                   order: action.payload,
-                 },
-               };
-             case FAIL_ORDER_DETAIL:
-               return {
-                 ...state,
-                 orderDetail: {
-                   ...state.orderDetail,
-                   loading: false,
-                   error: action.payload,
-                 },
-               };
-
-            case BEGIN_UPDATE_USERINFO:
-               return { ...state, userSignin: { ...state.userSignin, loading: true } };
-            case SUCCESS_UPDATE_USERINFO:
+            case SUCCESS_ORDER_CREATE:
                return {
                ...state,
-               userSignin: {
-                  ...state.userSignin,
+               orderInfo: {
+                  ...state.orderInfo,
                   loading: false,
-                  userInfo: action.payload,
+                  order: action.payload,
+                  success: true,
+                  error: null,
+                  },
+               };
+            case FAIL_ORDER_CREATE:
+               return {
+               ...state,
+               orderInfo: {
+                  ...state.orderInfo,
+                  loading: false,
+                  order: { id: "" },
+                  success: false,
+                  error: action.payload,
+                  },
+               };
+         case RESET_ORDER:
+            return {
+               ...state,
+               orderInfo: {
+                  ...state.orderInfo,
+                  loading: false,
+                  order: { id: "" },
+                  success: false,
+               },
+            };
+
+         case BEGIN_ORDER_DETAIL:
+            return {
+               ...state,
+               orderDetail: {
+                  ...state.orderDetail,
+                  loading: true,
+               }
+            };
+            
+            case SUCCESS_ORDER_DETAIL:
+            return {
+               ...state,
+               orderDetail: {
+                  ...state.orderDetail,
+                  loading: false,
+                  order: action.payload,
+               },
+            };
+            case FAIL_ORDER_DETAIL:
+            return {
+               ...state,
+               orderDetail: {
+                  ...state.orderDetail,
+                  loading: false,
+                  error: action.payload,
+               },
+            };
+
+            case SEARCH_USER_ORDERS:
+               return {
+               ...state,
+               userOrders: { ...state.userOrders, loading: true },
+               };
+            case SUCCESS_SEARCH:
+               return {
+               ...state,
+               userOrders: { 
+                  ...state.userOrders,
+                  loading: false,
+                  orders: action.payload,
                   error: "",
                },
                };
-            case FAIL_UPDATE_USERINFO:
+               
+            case FAIL_SEARCH: 
                return {
                ...state,
-               userSignin: {
-                  ...state.userSignin,
+               userOrders: { 
+                  ...state.userOrders,
                   loading: false,
                   error: action.payload,
                },
                };
-               case SEARCH_USER_ORDERS:
-                  return {
-                  ...state,
-                  userOrders: { ...state.userOrders, loading: true },
-                  };
-               case SUCCESS_SEARCH:
-                  return {
-                  ...state,
-                  userOrders: { 
-                     ...state.userOrders,
-                     loading: false,
-                     orders: action.payload,
-                     error: "",
-                  },
-                  };
-                  
-               case FAIL_SEARCH: 
-                  return {
-                  ...state,
-                  userOrders: { 
-                     ...state.userOrders,
-                     loading: false,
-                     error: action.payload,
-                  },
-                  };
 
             default:
             return state;

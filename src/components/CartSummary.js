@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function CartSummary() {
 
-  const { state: { cartItems } } = useContext(StoreContext);
+  const { state: {cart:{ cartItems } }} = useContext(StoreContext);
   // const [isModalVisible, setIsModalVisible] = useState(false);
   // const toggleModal = () => setIsModalVisible(!isModalVisible);
 

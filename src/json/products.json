@@ -1,6 +1,6 @@
 [
     {
-        "id":"1",
+        "category":"Clock",
         "image":"https://i.pinimg.com/564x/03/3b/9a/033b9ad1772b989809582a87f25e6006.jpg",
         "name":" Sea on Concrete Wall Clock",
         "author":" Design by cafelab",
@@ -21,7 +21,7 @@
     },
     
     {
-        "id":"2",
+        "category":"Chair",
         "image":"https://i.pinimg.com/564x/98/a2/14/98a214ea96aeaa12abc6e79727eafa92.jpg",
         "name":" Crosshatch Side Chair",
         "author":"  Designed by EOOS",
@@ -41,7 +41,7 @@
         "detailproduct4":"https://www.hermanmiller.com/content/dam/hmicom/page_assets/products/eames_wire_chairs/it_prd_ovw_eames_wire_chairs_01.jpg"
     },
     {
-        "id":"3",
+        "category":"Chair",
         "image":"https://ctl.s6img.com/society6/img/h1xQJ1C1AxxVzFXaj6QJWtWeOx0/w_700/bar-stools/black/front/~artwork,fw_3300,fh_3300,fx_-176,fy_-29,iw_3604,ih_3604/s6-original-art-uploads/society6/uploads/misc/2b4c8a52210d44aeaafeb8a04e632d51/~~/geometry-shapes-3-bar-stools.jpg?wait=0&attempt=0",
         "name":" Geometry shapes 3 Bar Stool",
         "author":" Design by Ana Rut Bre Fine Art ",
@@ -61,7 +61,7 @@
         "detailproduct4":"https://ctl.s6img.com/society6/img/XiXBSuM7BUicmvEVTnShr4AEahY/w_700/bar-stools/black/front/~artwork,fw_3300,fh_3300,fy_-660,iw_3300,ih_4620/s6-original-art-uploads/society6/uploads/misc/e8e37922157b42db94db614e7258d470/~~/the-sun-and-a-rainbow-bar-stools.jpg"
     },
     {
-        "id":"4",
+        "category":"Table",
         "image":"https://cdn1.ykso.co/wildorchid/product/round-mango-wood-coffee-table-with-splayed-metal-legs-brown-and-black/images/895a98c/1590747894/generous.jpg",
         "name":" Saltoro Sherpi Round Mango Wood Coffee Tabl",
         "author":" Designed by DorisciciArt ",
@@ -81,7 +81,7 @@
         "detailproduct4":"https://cdn1.ykso.co/wildorchid/product/wooden-side-table-with-single-drawer-and-angled-legs-gray-and-brown/images/eb9c690/1575348983/generous.jpg"
     },
     {
-        "id":"5",
+        "category":"Chair",
         "image":"https://image.architonic.com/pro2-2/1524784/calatea-01-pro-b-arcit18.jpg",
         "name":" Calatea",
         "author":" Design by Pianca",
@@ -102,7 +102,7 @@
         
     },
     {
-        "id":"6",
+        "category":"Lighting",
         "image":"https://images.squarespace-cdn.com/content/v1/51eed906e4b0953024980af9/1383545867131-J3109YDM0R3T3E2IPBUI/ke17ZwdGBToddI8pDm48kGm_lmxn_JwT7UQFYPwQ7ZxZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwXWplLfyj2T9RmzkPfGlD5YA16S37GzO0FbXGbA1afGkmpTu4DKR10BpnFEkUNJHQ/Seltanica-Lamp-Light-Fixture-Cmmwlth-1.jpg?format=750w",
         "name":" The Seltanica Lamp ",
         "author":" Designed by Cmmnwlth",
@@ -122,7 +122,7 @@
         "detailproduct4":"https://rp-prod-wordpress-b-content.s3.amazonaws.com/assets/2012/02/05132706/Seletti-coupoles-e1328268955220.png"
     },
     {
-        "id":"7",
+        "category":"Other",
         "image":"https://cdn.shopify.com/s/files/1/0164/0955/9104/products/IMG_7054-2_540x.jpg?v=1606595879",
         "name":" The Granite Bottle Vase",
         "author":" Design by cafelab",
@@ -142,7 +142,7 @@
         "detailproduct4":"https://cdn.shopify.com/s/files/1/1190/0990/products/The_Granite_Bottle_Vase_Bauhaus_Greens_2_grande.png?v=1511200630"
     },
     {
-        "id":"8",
+        "category":"Table",
         "image":"https://image.architonic.com/img_pro2-1/139/3572/capri-fondo-b.jpg",
         "name":" Capri",
         "author":" Designed by Angelo Tomaiuolo",
